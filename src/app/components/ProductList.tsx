@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface Product {
   productName: string;
@@ -11,6 +12,7 @@ interface Product {
   stock: number;
   category: string;
   productID: number;
+  _id: string;
 }
 
 const ProductList: React.FC = () => {
@@ -46,20 +48,22 @@ const ProductList: React.FC = () => {
     <div className="container mx-auto py-8">
       <h2 className="text-2xl font-semibold text-center mb-6">Product List</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {products.map((product) => (
-          <div key={product.productID} className="border p-4 rounded-lg shadow-lg">
-            <div className="relative w-full h-48 mb-4">
-              <Image
-                src={product.imageURL}
-                alt={product.productName}
-                layout="fill"
-                objectFit="cover"
-                className="rounded"
-              />
-            </div>
-            <h3 className="text-lg font-bold">{product.productName}</h3>
-          </div>
-        ))}
+      {products.map((product) => (
+  <Link href={`/product/${product._id}`} key={product._id}>
+    <div className="border p-4 rounded-lg shadow-lg cursor-pointer">
+      <div className="relative w-full h-48 mb-4">
+        <Image
+          src={product.imageURL}
+          alt={product.productName}
+          layout="fill"
+          objectFit="cover"
+          className="rounded"
+        />
+      </div>
+      <h3 className="text-lg font-bold">{product.productName}</h3>
+    </div>
+  </Link>
+))}
       </div>
     </div>
   );
