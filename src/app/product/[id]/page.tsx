@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation'; // Import useRouter
 import ProductDetails from '@/app/components/ProductDetails';
+import DeleteProduct from '@/app/components/DeleteProduct';
 
 interface Product {
   productName: string;
@@ -18,7 +18,6 @@ const ProductPage = ({ params }: { params: { id: string } }) => {
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const router = useRouter(); // Initialize the router
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -50,36 +49,16 @@ const ProductPage = ({ params }: { params: { id: string } }) => {
     fetchProduct();
   }, [params.id]);
 
-  const handleDelete = async () => {
-    const confirmDelete = window.confirm('Are you sure you want to delete this product?');
-    if (!confirmDelete) return;
-
-    try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_RESTDB_API_URL}/${params.id}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-apikey': process.env.NEXT_PUBLIC_RESTDB_API_KEY as string,
-        },
-      });
-
-      if (response.ok) {
-        router.push('/'); // Navigate to home after deletion
-      } else {
-        console.error('Failed to delete product');
-      }
-    } catch (error) {
-      console.error('Error deleting product:', error);
-    }
-  };
-
   if (loading) return <p>Loading product details...</p>;
   if (error) return <p>Error loading product details: {error}</p>;
 
   return (
     <>
       {product && (
-        <ProductDetails product={product} onDelete={handleDelete} />
+        <div>
+          <ProductDetails product={product} />
+          <DeleteProduct productId={product._id} />
+        </div>
       )}
     </>
   );

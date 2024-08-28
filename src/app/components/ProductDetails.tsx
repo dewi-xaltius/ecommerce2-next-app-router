@@ -11,10 +11,9 @@ interface ProductDetailsProps {
     stock: number;
     category: string;
   };
-  onDelete: () => void; // Accept onDelete as a prop
 }
 
-const ProductDetails = ({ product, onDelete }: ProductDetailsProps) => {
+const ProductDetails = ({ product }: ProductDetailsProps) => {
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-md flex relative">
       <div className="w-1/2">
@@ -36,12 +35,6 @@ const ProductDetails = ({ product, onDelete }: ProductDetailsProps) => {
           <p className="text-md text-gray-600 mb-1">Stock: {product.stock}</p>
           <p className="text-md text-gray-600 mb-4">Category: {product.category}</p>
         </div>
-        <button
-          onClick={onDelete}
-          className="self-end bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition absolute bottom-6 right-6"
-        >
-          Delete Product
-        </button>
       </div>
     </div>
   );
