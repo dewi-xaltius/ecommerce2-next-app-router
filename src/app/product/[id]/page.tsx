@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation'; // Import useRouter
 import ProductDetails from '@/app/components/ProductDetails';
 
 interface Product {
@@ -17,6 +18,7 @@ const ProductPage = ({ params }: { params: { id: string } }) => {
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter(); // Initialize the router
 
   useEffect(() => {
     const fetchProduct = async () => {
