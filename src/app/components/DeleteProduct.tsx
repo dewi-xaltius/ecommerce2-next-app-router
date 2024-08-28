@@ -1,4 +1,3 @@
-// src/app/components/DeleteProduct.tsx
 import { useRouter } from 'next/navigation';
 
 interface DeleteProductProps {
