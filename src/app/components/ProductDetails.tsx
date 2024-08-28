@@ -24,7 +24,8 @@ const ProductDetails = ({ product, onDelete }: ProductDetailsProps) => {
           width={400}
           height={400}
           className="rounded"
-          objectFit="cover"
+          style={{ objectFit: 'cover', width: 'auto', height: 'auto' }}
+          priority
         />
       </div>
       <div className="w-1/2 pl-6 flex flex-col justify-between">
