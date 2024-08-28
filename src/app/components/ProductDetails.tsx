@@ -1,6 +1,7 @@
 "use client";
 
 import Image from 'next/image';
+import DeleteProduct from '@/app/components/DeleteProduct'; // Import DeleteProduct
 
 interface ProductDetailsProps {
   product: {
@@ -10,6 +11,7 @@ interface ProductDetailsProps {
     imageURL: string;
     stock: number;
     category: string;
+    _id: string; // Ensure you have the _id property here
   };
 }
 
@@ -35,6 +37,8 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
           <p className="text-md text-gray-600 mb-1">Stock: {product.stock}</p>
           <p className="text-md text-gray-600 mb-4">Category: {product.category}</p>
         </div>
+        {/* Include the DeleteProduct component here */}
+        <DeleteProduct productId={product._id} />
       </div>
     </div>
   );

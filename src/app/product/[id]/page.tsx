@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import ProductDetails from '@/app/components/ProductDetails';
-import DeleteProduct from '@/app/components/DeleteProduct';
 
 interface Product {
   productName: string;
@@ -54,12 +54,7 @@ const ProductPage = ({ params }: { params: { id: string } }) => {
 
   return (
     <>
-      {product && (
-        <div>
-          <ProductDetails product={product} />
-          <DeleteProduct productId={product._id} />
-        </div>
-      )}
+      {product && <ProductDetails product={product} />}
     </>
   );
 };
