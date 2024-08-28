@@ -55,9 +55,11 @@ const ProductList: React.FC = () => {
         <Image
           src={product.imageURL}
           alt={product.productName}
-          layout="fill"
-          objectFit="cover"
+          fill
+          style={{ objectFit: 'cover' }}
           className="rounded"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          priority
         />
       </div>
       <h3 className="text-lg font-bold">{product.productName}</h3>
