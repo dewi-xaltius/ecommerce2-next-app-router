@@ -16,8 +16,23 @@ interface ProductDetailsProps {
 }
 
 const ProductDetails = ({ product }: ProductDetailsProps) => {
+  const handleEditClick = () => {
+    // For now, we'll just log to the console to ensure the button works
+    console.log('Edit button clicked');
+    // Navigation to the EditProductForm page will be added in the next step
+  };
+
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-md flex relative">
+      <div className="absolute top-4 right-4">
+        <button
+          onClick={handleEditClick}
+          className="bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600 transition"
+        >
+          Edit
+        </button>
+      </div>
+      
       <div className="w-1/2">
         <Image
           src={product.imageURL || ''}
